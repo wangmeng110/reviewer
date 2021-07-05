@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ebusiness.reviewer.mapper.ComConditionMapper">
+    <resultMap id="BaseResultMap" type="com.ebusiness.reviewer.model.ComCondition">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="design_per" property="designPer" jdbcType="INTEGER"/>
+        <result column="poster_per" property="posterPer" jdbcType="INTEGER"/>
+        <result column="theme_style_per" property="themeStylePer" jdbcType="INTEGER"/>
+        <result column="attaction_per" property="attactionPer" jdbcType="INTEGER"/>
+        <result column="analysis_per" property="analysisPer" jdbcType="INTEGER"/>
+        <result column="first_prize_per" property="firstPrizePer" jdbcType="INTEGER"/>
+        <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <insert id="insertComCondition">
+        insert into com_condition (id, design_per, poster_per, theme_style_per, attaction_per, analysis_per,
+                                   first_prize_per, competition_id, create_time)
+        values (default, #{designPer}, #{posterPer}, #{themeStylePer}, #{attactionPer}, #{analysisPer},
+                #{firstPrizePer}, #{competitionId}, #{createTime})
+    </insert>
+    <update id="updateCompetitionById">
+        update competition
+        set process = "已结束"
+        where id = #{id}
+    </update>
+    <select id="getComCondition" resultMap="BaseResultMap">
+        select *
+        from com_condition
+        where competition_id = #{id}
+    </select>
+
+</mapper>
